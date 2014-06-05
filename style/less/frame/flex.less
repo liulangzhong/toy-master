@@ -1,0 +1,83 @@
+//子元素侧轴对齐方式
+//align-items: flex-start | flex-end | center | baseline | stretch
+//(old)box-align: start|end|center|baseline|stretch;
+
+//子元素主轴对齐方式
+//justify-content: flex-start | flex-end | center | space-between | space-around
+//(old)box-pack: start|end|center|justify;
+
+//子元素行列描述
+//flex-direction: row | row-reverse | column | column-reverse
+//box-direction: normal|reverse
+//box-orient: horizontal|vertical
+
+//子元素换行
+//因为box-lines兼容性未知,暂时不采用该属性控制元素换行.
+//flex-wrap: nowrap | wrap | wrap-reverse
+//box-lines: single|multiple;
+.needflex(@old){
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -o-flex;
+  display: flex; 
+}
+.needflex(@old) when (@old = box){
+  display: -webkit-box;
+}
+.flex(@n){
+  -webkit-box-flex:@n;      
+  -webkit-flex:@n;
+  -moz-flex:@n;
+  -o-flex:@n;          
+  flex:@n;                  
+}
+.order(@n) {
+  -webkit-box-ordinal-group: @n;   
+  -webkit-order: @n;
+  -moz-flex:@n;
+  -o-flex:@n;               
+  order: @n;                       
+}
+.flex-H(@h) when (@h = start){
+  -webkit-justify-content:flex-start;
+  -webkit-box-pack:@h;
+}
+.flex-H(@h) when (@h = end){
+  -webkit-justify-content:flex-end;
+  -webkit-box-pack:@h;
+}
+.flex-H(@h) {
+  -webkit-box-pack:@h;
+  -webkit-justify-content:@h;
+}
+.flex-V(@v) when (@v = start){
+  -webkit-algin-items:flex-start;
+  -webkit-box-align:@v;
+}
+.flex-V(@v) when (@v = end){
+  -webkit-algin-itmes:flex-end;
+  -webkit-box-align:@v;
+}
+.flex-V(@v){
+  -webkit-align-items:@v;
+  -webkit-box-align:@v;
+}
+.flex-dec(@dec) when (@dec = row){
+  -webkit-flex-direction: @dec;
+  -webkit-box-orient: vertical;
+}
+.flex-dec(@dec) when (@dec = column){
+  -webkit-flex-direction: @dec;
+  -webkit-box-orient: horizontal;
+}
+.flex-dec(@dec) when (@dec = row-reverse){
+  -webkit-flex-direction: @dec;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction : reverse;
+}
+.flex-dec(@dec) when (@dec = column-reverse){
+  -webkit-flex-direction: @dec;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction : reverse;
+}
